@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   s.require_path  = 'lib'
 
   s.required_ruby_version = ">= 2.0"
-  
+
   s.add_dependency "sprockets", ">= 2.0"
+
+  s.add_development_dependency 'rake', '~> 12.0'
 end
