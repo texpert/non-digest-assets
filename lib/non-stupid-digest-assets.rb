@@ -1,6 +1,6 @@
 require "sprockets/manifest"
 
-module NonStupidDigestAssets
+module NonDigestAssets
   mattr_accessor :whitelist
   @@whitelist = []
 
@@ -24,7 +24,7 @@ module NonStupidDigestAssets
   module CompileWithNonDigest
     def compile *args
       paths = super
-      NonStupidDigestAssets.assets(assets).each do |(logical_path, digest_path)|
+      NonDigestAssets.assets(assets).each do |(logical_path, digest_path)|
         full_digest_path = File.join dir, digest_path
         full_digest_gz_path = "#{full_digest_path}.gz"
         full_non_digest_path = File.join dir, logical_path
@@ -48,4 +48,4 @@ module NonStupidDigestAssets
   end
 end
 
-Sprockets::Manifest.send(:prepend, NonStupidDigestAssets::CompileWithNonDigest)
+Sprockets::Manifest.send(:prepend, NonDigestAssets::CompileWithNonDigest)

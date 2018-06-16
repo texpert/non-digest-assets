@@ -1,10 +1,13 @@
-Non-stupid non-digest assets in Rails 4
-=======================================
+Non-digest assets in Rails 4 and 5
+==================================
 
 What is it?
 -----------
 
-In Rails 4, there is no way to by default compile both digest and non-digest assets. This is a pain in the arse for almost everyone developing a Rails 4 app. This gem solves the problem with the minimum possible effort.
+In Rails 4 and 5, there is no way to by default compile both digest and
+non-digest assets. This is problematic if you also need to refer to assets from
+outside your Rails application. This gem solves the problem with the minimum
+possible effort.
 
 How do I install it?
 --------------------
@@ -12,7 +15,7 @@ How do I install it?
 Just put it in your Gemfile
 
 ```ruby
-gem "non-stupid-digest-assets"
+gem "non-digest-assets"
 ```
 
 If you want to whitelist non-digest assets for only certain files, you can configure a whitelist like this:
@@ -20,7 +23,7 @@ If you want to whitelist non-digest assets for only certain files, you can confi
 ```ruby
 # config/initializers/non_digest_assets.rb
 
-NonStupidDigestAssets.whitelist += [/tinymce\/.*/, "image.png"]
+NonDigestAssets.whitelist += [/tinymce\/.*/, "image.png"]
 ```
 
 Be sure to give either a regex that will match the right assets or the logical path of the asset in question.
@@ -47,7 +50,7 @@ Why do I need digest assets at all?
 
 Digests are used for cache busting. Remember that if you use the non-digest assets and serve them with far-future expires headers, you will cause problems with cached assets if the contents ever need to change. You must bear this in mind when using non-digest assets.
 
-Why is this not the default / a config option in Rails 4?
----------------------------------------------------------
+Why is this not the default or a config option in Rails 4 and 5?
+----------------------------------------------------------------
 
-Good question. I think it should be. [Complain here](https://github.com/rails/sprockets-rails/issues/49)
+The sprockets-rails developers do not want to support it. [Read the discussion here](https://github.com/rails/sprockets-rails/issues/49)
