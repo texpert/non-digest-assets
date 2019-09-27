@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "sprockets", ">= 2.0"
 
-  s.add_development_dependency 'rake', '~> 12.0'
+  s.add_development_dependency 'rake', '~> 13.0'
 end
