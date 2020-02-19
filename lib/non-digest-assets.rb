@@ -22,6 +22,14 @@ module NonDigestAssets
   end
 
   module CompileWithNonDigest
+    # Copy an asset and preserve atime and mtime attributes. If the file exists
+    # and is not owned by the calling user, the utime call will fail so we just
+    # delete the target file first in any case.
+    def copy_file(from, to)
+      FileUtils.rm_f to
+      FileUtils.copy_file from, to, :preserve_attributes
+    end
+
     def compile *args
       paths = super
       NonDigestAssets.assets(assets).each do |(logical_path, digest_path)|
@@ -32,17 +40,18 @@ module NonDigestAssets
 
         if File.exists? full_digest_path
           logger.debug "Writing #{full_non_digest_path}"
-          FileUtils.copy_file full_digest_path, full_non_digest_path, :preserve_attributes
+          copy_file full_digest_path, full_non_digest_path
         else
           logger.debug "Could not find: #{full_digest_path}"
         end
         if File.exists? full_digest_gz_path
           logger.debug "Writing #{full_non_digest_gz_path}"
-          FileUtils.copy_file full_digest_gz_path, full_non_digest_gz_path, :preserve_attributes
+          copy_file full_digest_gz_path, full_non_digest_gz_path
         else
           logger.debug "Could not find: #{full_digest_gz_path}"
         end
       end
+
       paths
     end
   end
