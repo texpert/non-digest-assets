@@ -1,8 +1,10 @@
-require_relative 'boot'
+# frozen_string_literal: true
 
-require 'rails'
-require 'sprockets/railtie'
-require 'rails/test_unit/railtie'
+require_relative "boot"
+
+require "rails"
+require "sprockets/railtie"
+require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
 
