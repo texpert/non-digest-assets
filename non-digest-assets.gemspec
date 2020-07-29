@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |s|
   s.name        = "non-digest-assets"
   s.version     = "1.0.10"
@@ -5,7 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Alex Speller", "Matijs van Zuijlen"]
   s.email       = ["matijs@matijs.net"]
   s.homepage    = "http://github.com/mvz/non-digest-assets"
-  s.summary     = "Make the Rails 4+ asset pipeline generate non-digest along with digest assets"
+  s.summary     =
+    "Make the Rails 4+ asset pipeline generate non-digest along with digest assets"
   s.description = <<-DESCRIPTION
     Rails 4 and up provide no option to generate both digest and non-digest
     assets. Installing this gem automatically creates both digest and

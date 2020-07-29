@@ -30,11 +30,14 @@ def run_tests(command_array = %w(bundle exec rake))
   run_command command_array
 end
 
+SPROCKETS_3_DIGEST = "f0d704deea029cf000697e2c0181ec173a1b474645466ed843eb5ee7bb215794"
+SPROCKETS_4_DIGEST = "4998ce12ecefa6ba42de36e4beac458527529608f8cf0fe6c97acd87850045e4"
+
 VERSIONS = [
-  ["5.0", 3, "rails50_app", "f0d704deea029cf000697e2c0181ec173a1b474645466ed843eb5ee7bb215794"],
-  ["5.1", 3, "rails51_app", "f0d704deea029cf000697e2c0181ec173a1b474645466ed843eb5ee7bb215794"],
-  ["5.2", 3, "rails52_app", "f0d704deea029cf000697e2c0181ec173a1b474645466ed843eb5ee7bb215794"],
-  ["6.0", 4, "rails60_app", "4998ce12ecefa6ba42de36e4beac458527529608f8cf0fe6c97acd87850045e4"]
+  ["5.0", 3, "rails50_app", SPROCKETS_3_DIGEST],
+  ["5.1", 3, "rails51_app", SPROCKETS_3_DIGEST],
+  ["5.2", 3, "rails52_app", SPROCKETS_3_DIGEST],
+  ["6.0", 4, "rails60_app", SPROCKETS_4_DIGEST]
 ].freeze
 
 VERSIONS.each do |rails_version, sprockets_version, appdir, digest_key|
