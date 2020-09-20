@@ -50,8 +50,10 @@ VERSIONS.each do |rails_version, sprockets_version, appdir, digest_key|
         run_command %w(bundle exec rake assets:clobber)
         _("public/assets/").path_wont_exist
         run_command %w(bundle exec rake assets:precompile)
-        _("public/assets/application.css").path_must_exist
         _("public/assets/application-#{digest_key}.css").path_must_exist
+        _("public/assets/application.css").path_must_exist
+        _("public/assets/application-#{digest_key}.css.gz").path_must_exist
+        _("public/assets/application.css.gz").path_must_exist
       end
     end
   end
