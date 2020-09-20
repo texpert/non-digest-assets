@@ -1,2 +1,5 @@
 Gemfile.lock
 pkg/
+fixtures/rails*_app/log/*.log
+fixtures/rails*_app/public/
+fixtures/rails*_app/tmp/

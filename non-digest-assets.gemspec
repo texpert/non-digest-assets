@@ -21,5 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "sprockets", ">= 2.0"
 
+  s.add_development_dependency 'minitest', '~> 5.14'
   s.add_development_dependency 'rake', '~> 13.0'
+  s.add_development_dependency 'pry', '~> 0.13.1'
 end
