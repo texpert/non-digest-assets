@@ -1,4 +1,5 @@
 require "sprockets/manifest"
+require "active_support/core_ext/module/attribute_accessors"
 
 module NonDigestAssets
   mattr_accessor :whitelist
@@ -38,13 +39,13 @@ module NonDigestAssets
         full_non_digest_path = File.join dir, logical_path
         full_non_digest_gz_path = "#{full_non_digest_path}.gz"
 
-        if File.exists? full_digest_path
+        if File.exist? full_digest_path
           logger.debug "Writing #{full_non_digest_path}"
           copy_file full_digest_path, full_non_digest_path
         else
           logger.debug "Could not find: #{full_digest_path}"
         end
-        if File.exists? full_digest_gz_path
+        if File.exist? full_digest_gz_path
           logger.debug "Writing #{full_non_digest_gz_path}"
           copy_file full_digest_gz_path, full_non_digest_gz_path
         else
