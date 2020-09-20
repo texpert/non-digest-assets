@@ -1,4 +1,5 @@
 require "sprockets/manifest"
+require "active_support/core_ext/module/attribute_accessors"
 
 module NonDigestAssets
   mattr_accessor :whitelist
