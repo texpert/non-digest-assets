@@ -1,27 +1,29 @@
-require 'rake'
-require 'rake/testtask'
-require 'bundler/gem_tasks'
-require 'rake/clean'
+# frozen_string_literal: true
 
-CLEAN.include 'fixtures/**/Gemfile.lock'
-CLEAN.include 'fixtures/**/public/assets'
-CLOBBER.include 'pkg'
+require "rake"
+require "rake/testtask"
+require "bundler/gem_tasks"
+require "rake/clean"
 
-desc 'Default: run tests.'
+CLEAN.include "fixtures/**/Gemfile.lock"
+CLEAN.include "fixtures/**/public/assets"
+CLOBBER.include "pkg"
+
+desc "Default: run tests."
 task default: :test
 
 namespace :test do
   Rake::TestTask.new(:unit) do |t|
     t.libs += %w(lib test)
-    t.pattern = 'test/unit/**/*_test.rb'
+    t.pattern = "test/unit/**/*_test.rb"
     t.verbose = true
   end
 
   Rake::TestTask.new(:integration) do |t|
     t.libs += %w(lib test)
-    t.pattern = 'test/integration/**/*_test.rb'
+    t.pattern = "test/integration/**/*_test.rb"
     t.verbose = true
   end
 end
 
-task test: ['test:unit', 'test:integration']
+task test: ["test:unit", "test:integration"]

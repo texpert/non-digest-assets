@@ -1,5 +1,7 @@
-require 'test_helper'
-require 'non-digest-assets'
+# frozen_string_literal: true
+
+require "test_helper"
+require "non-digest-assets"
 require "tmpdir"
 require "fileutils"
 
@@ -7,12 +9,12 @@ describe "NonDigestAssets" do
   describe ".assets" do
     it "returns its arguments if there are no whitelisted assets" do
       NonDigestAssets.whitelist = []
-      _(NonDigestAssets.assets(["foo", "bar"])).must_equal ["foo", "bar"]
+      _(NonDigestAssets.assets(%w(foo bar))).must_equal %w(foo bar)
     end
 
     it "returns only whitelisted parts of arguments if there are whitelisted assets" do
-      NonDigestAssets.whitelist = ["bar", "baz"]
-      _(NonDigestAssets.assets(["foo", "bar"])).must_equal ["bar"]
+      NonDigestAssets.whitelist = %w(bar baz)
+      _(NonDigestAssets.assets(%w(foo bar))).must_equal ["bar"]
     end
   end
 end

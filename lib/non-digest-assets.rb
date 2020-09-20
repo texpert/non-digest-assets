@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "sprockets/manifest"
 require "active_support/core_ext/module/attribute_accessors"
 
@@ -8,13 +10,14 @@ module NonDigestAssets
   class << self
     def assets(assets)
       return assets if whitelist.empty?
+
       whitelisted_assets(assets)
     end
 
     private
 
     def whitelisted_assets(assets)
-      assets.select do |logical_path, digest_path|
+      assets.select do |logical_path, _digest_path|
         whitelist.any? do |item|
           item === logical_path
         end
@@ -31,7 +34,7 @@ module NonDigestAssets
       FileUtils.copy_file from, to, :preserve_attributes
     end
 
-    def compile *args
+    def compile(*args)
       paths = super
       NonDigestAssets.assets(assets).each do |(logical_path, digest_path)|
         full_digest_path = File.join dir, digest_path
@@ -58,4 +61,4 @@ module NonDigestAssets
   end
 end
 
-Sprockets::Manifest.send(:prepend, NonDigestAssets::CompileWithNonDigest)
+Sprockets::Manifest.prepend NonDigestAssets::CompileWithNonDigest
