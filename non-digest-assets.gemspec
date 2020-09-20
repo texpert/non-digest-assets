@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.authors     = ["Alex Speller", "Matijs van Zuijlen"]
   s.email       = ["matijs@matijs.net"]
   s.homepage    = "http://github.com/mvz/non-digest-assets"
-  s.summary     = "Fix the Rails 4 and 5 asset pipeline to generate non-digest along with digest assets"
+  s.summary     = "Make the Rails 4+ asset pipeline generate non-digest along with digest assets"
   s.description = <<-DESCRIPTION
-    Rails 4 and 5 provide no option to generate both digest and non-digest
+    Rails 4 and up provide no option to generate both digest and non-digest
     assets. Installing this gem automatically creates both digest and
     non-digest assets which are useful for many reasons.
   DESCRIPTION
