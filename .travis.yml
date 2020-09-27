@@ -1,6 +1,9 @@
 ---
 language: ruby
-cache: bundler
+
+cache:
+  bundler: true
+
 script: bundle exec rake
 
 jobs:
@@ -10,6 +13,7 @@ jobs:
     - rvm: 2.6.6
     - rvm: 2.7.1
     - rvm: 2.7.1
+      name: "RuboCop"
       script: bundle exec rubocop
 
 branches:
