@@ -37,11 +37,13 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
       - uses: actions/cache@v2
         with:
-          path: vendor/bundle
-          key: bundle-${{ runner.os }}-ruby-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles(env.BUNDLE_GEMFILE, '*.gemspec') }}
+          # NOTE: Bundler expands the path relative to the gemfile, not the
+          # current directory.
+          path: ./gemfiles/vendor/bundle
+          key: bundled-gems-${{ runner.os }}-ruby-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles(env.BUNDLE_GEMFILE, '*.gemspec') }}
           restore-keys: |
-            bundle-${{ runner.os }}-ruby-${{ matrix.ruby }}-${{ matrix.appraisal }}-
-            bundle-${{ runner.os }}-ruby-${{ matrix.ruby }}-
+            bundled-gems-${{ runner.os }}-ruby-${{ matrix.ruby }}-${{ matrix.appraisal }}-
+            bundled-gems-${{ runner.os }}-ruby-${{ matrix.ruby }}-
       - name: Install gems
         run: |
           bundle config path vendor/bundle
