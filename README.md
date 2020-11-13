@@ -1,13 +1,13 @@
-Non-digest assets in Rails 4 and up
-===================================
+Non-digest assets in Rails
+==========================
 
 What is it?
 -----------
 
-In Rails 4, 5 and 6, there is no way to by default compile both digest and
-non-digest assets. This is problematic if you also need to refer to assets from
-outside your Rails application. This gem solves the problem with the minimum
-possible effort.
+In Rails starting from version 4, there is no way to by default compile both
+digest and non-digest assets. This is problematic if you also need to refer to
+assets from outside your Rails application. This gem solves the problem with the
+minimum possible effort.
 
 How do I install it?
 --------------------
@@ -63,8 +63,13 @@ assets and serve them with far-future expires headers, you will cause problems
 with cached assets if the contents ever need to change. You must bear this in
 mind when using non-digest assets.
 
-Why is this not the default or a config option in Rails 4 and 5?
+Why is this not the default or a config option in Rails?
 ----------------------------------------------------------------
 
 The sprockets-rails developers do not want to support it.
 [Read the discussion here](https://github.com/rails/sprockets-rails/issues/49)
+
+Which versions of Ruby and Rails are supported?
+--------------------------------------
+
+This gem is tested with Rails 5.0, 5.1, 5.2 and 6.0 and targets Ruby 2.4 and up.

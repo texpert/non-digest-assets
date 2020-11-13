@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.email       = ["matijs@matijs.net"]
   s.homepage    = "http://github.com/mvz/non-digest-assets"
   s.summary     =
-    "Make the Rails 4+ asset pipeline generate non-digest along with digest assets"
+    "Make the Rails asset pipeline generate non-digest along with digest assets"
   s.description = <<-DESCRIPTION
-    Rails 4 and up provide no option to generate both digest and non-digest
+    Rails provides no option to generate both digest and non-digest
     assets. Installing this gem automatically creates both digest and
     non-digest assets which are useful for many reasons.
   DESCRIPTION
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.license       = "MIT"
   s.require_path  = "lib"
 
-  s.required_ruby_version = ">= 2.0"
+  s.required_ruby_version = ">= 2.4"
 
   s.add_dependency "activesupport", [">= 4.0", "< 6.1"]
   s.add_dependency "sprockets", [">= 2.0", "< 5.0"]
