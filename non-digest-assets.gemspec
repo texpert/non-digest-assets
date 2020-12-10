@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.4"
 
-  s.add_dependency "activesupport", [">= 4.0", "< 6.1"]
+  s.add_dependency "activesupport", ">= 4.0", "< 6.2"
   s.add_dependency "sprockets", [">= 2.0", "< 5.0"]
 
   s.add_development_dependency "appraisal", "~> 2.3"
