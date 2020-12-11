@@ -28,7 +28,10 @@ RSpec.describe "compiling assets using non-digest-assets", type: :aruba do
     flags =
       "--skip-bundle --skip-test-unit --skip-spring --skip-bootsnap --skip-listen" \
       " --skip-javascript"
-    flags += " --skip-webpack-install" if Rails::VERSION::MAJOR >= 6
+    if Rails::VERSION::MAJOR >= 6
+      flags += " --skip-webpack-install"
+      flags += " --no-skip-javascript" if Rails::VERSION::MINOR >= 1
+    end
     flags
   end
 
