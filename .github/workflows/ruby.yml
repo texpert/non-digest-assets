@@ -17,12 +17,8 @@ jobs:
     strategy:
       matrix:
         ruby: [2.5, 2.6, 2.7]
-        appraisal: [rails_5_0, rails_5_1, rails_5_2, rails_6_0, rails_6_1]
+        appraisal: [rails_5_2, rails_6_0, rails_6_1]
         include:
-          - ruby: 2.4
-            appraisal: rails_5_0
-          - ruby: 2.4
-            appraisal: rails_5_1
           - ruby: 2.4
             appraisal: rails_5_2
           - ruby: "3.0"
