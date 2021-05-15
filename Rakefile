@@ -13,13 +13,16 @@ desc "Default: run specs."
 task default: :spec
 
 namespace :spec do
+  desc "Run RSpec unit specs"
   RSpec::Core::RakeTask.new(:unit) do |t|
     t.pattern = "spec/unit/**/*_spec.rb"
   end
 
+  desc "Run RSpec integration specs"
   RSpec::Core::RakeTask.new(:integration) do |t|
     t.pattern = "spec/integration/**/*_spec.rb"
   end
 end
 
+desc "Run all RSpec specs"
 task spec: ["spec:unit", "spec:integration"]
