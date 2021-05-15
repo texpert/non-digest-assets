@@ -5,21 +5,7 @@ require "non-digest-assets"
 require "tmpdir"
 require "fileutils"
 
-RSpec.describe "NonDigestAssets" do
-  describe ".assets" do
-    it "returns its arguments if there are no whitelisted assets" do
-      NonDigestAssets.whitelist = []
-      expect(NonDigestAssets.assets(%w(foo bar))).to eq %w(foo bar)
-    end
-
-    it "returns only whitelisted parts of arguments if there are whitelisted assets" do
-      NonDigestAssets.whitelist = %w(bar baz)
-      expect(NonDigestAssets.assets(%w(foo bar))).to eq ["bar"]
-    end
-  end
-end
-
-RSpec.describe "NonDigestAssets::CompileWithNonDigest", type: :aruba do
+RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
   let(:sprockets) do
     klass = Class.new do
       attr_reader :dir
@@ -48,7 +34,7 @@ RSpec.describe "NonDigestAssets::CompileWithNonDigest", type: :aruba do
         FileUtils.touch asset
       end
     end
-    klass.prepend NonDigestAssets::CompileWithNonDigest
+    klass.prepend described_class
     in_current_directory do
       klass.new
     end
@@ -68,17 +54,21 @@ RSpec.describe "NonDigestAssets::CompileWithNonDigest", type: :aruba do
     describe "if regular files for each asset exist but gzipped files do not" do
       it "creates only non-digest versions for each asset" do
         sprockets.compile
-        expect("foo.css").to be_an_existing_file
-        expect("bar.css").to be_an_existing_file
-        expect("foo.css.gz").not_to be_an_existing_file
-        expect("bar.css.gz").not_to be_an_existing_file
+        aggregate_failures do
+          expect("foo.css").to be_an_existing_file
+          expect("bar.css").to be_an_existing_file
+          expect("foo.css.gz").not_to be_an_existing_file
+          expect("bar.css.gz").not_to be_an_existing_file
+        end
       end
 
       it "does not copy files for non-whitelisted assets" do
         NonDigestAssets.whitelist = ["bar.css"]
         sprockets.compile
-        expect("foo.css").not_to be_an_existing_file
-        expect("bar.css").to be_an_existing_file
+        aggregate_failures do
+          expect("foo.css").not_to be_an_existing_file
+          expect("bar.css").to be_an_existing_file
+        end
       end
     end
 
@@ -91,10 +81,12 @@ RSpec.describe "NonDigestAssets::CompileWithNonDigest", type: :aruba do
 
       it "does not create any non-digest versions for each asset" do
         sprockets.compile
-        expect("foo.css").not_to be_an_existing_file
-        expect("bar.css").not_to be_an_existing_file
-        expect("foo.css.gz").not_to be_an_existing_file
-        expect("bar.css.gz").not_to be_an_existing_file
+        aggregate_failures do
+          expect("foo.css").not_to be_an_existing_file
+          expect("bar.css").not_to be_an_existing_file
+          expect("foo.css.gz").not_to be_an_existing_file
+          expect("bar.css.gz").not_to be_an_existing_file
+        end
       end
     end
 
@@ -108,19 +100,23 @@ RSpec.describe "NonDigestAssets::CompileWithNonDigest", type: :aruba do
 
       it "creates both regular and gzipped non-digest versions for each asset" do
         sprockets.compile
-        expect("foo.css").to be_an_existing_file
-        expect("bar.css").to be_an_existing_file
-        expect("foo.css.gz").to be_an_existing_file
-        expect("bar.css.gz").to be_an_existing_file
+        aggregate_failures do
+          expect("foo.css").to be_an_existing_file
+          expect("bar.css").to be_an_existing_file
+          expect("foo.css.gz").to be_an_existing_file
+          expect("bar.css.gz").to be_an_existing_file
+        end
       end
 
       it "does not copy files for non-whitelisted assets" do
         NonDigestAssets.whitelist = ["bar.css"]
         sprockets.compile
-        expect("foo.css").not_to be_an_existing_file
-        expect("bar.css").to be_an_existing_file
-        expect("foo.css.gz").not_to be_an_existing_file
-        expect("bar.css.gz").to be_an_existing_file
+        aggregate_failures do
+          expect("foo.css").not_to be_an_existing_file
+          expect("bar.css").to be_an_existing_file
+          expect("foo.css.gz").not_to be_an_existing_file
+          expect("bar.css.gz").to be_an_existing_file
+        end
       end
     end
   end

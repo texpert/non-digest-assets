@@ -1,7 +1,11 @@
 inherit_from: .rubocop_todo.yml
 
 require:
+  - rubocop-packaging
   - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
@@ -48,6 +52,17 @@ Metrics/BlockLength:
 
 Performance/StartWith:
   AutoCorrect: true
+
+# Allow longer examples, and any length for integration specs
+RSpec/ExampleLength:
+  Max: 8
+  Exclude:
+    - 'spec/integration/**/*'
+
+# Allow any number of expectations in integration specs
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/integration/**/*'
 
 # Allow and/or for control flow only
 Style/AndOr:
