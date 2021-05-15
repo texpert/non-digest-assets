@@ -5,21 +5,7 @@ require "non-digest-assets"
 require "tmpdir"
 require "fileutils"
 
-RSpec.describe "NonDigestAssets" do
-  describe ".assets" do
-    it "returns its arguments if there are no whitelisted assets" do
-      NonDigestAssets.whitelist = []
-      expect(NonDigestAssets.assets(%w(foo bar))).to eq %w(foo bar)
-    end
-
-    it "returns only whitelisted parts of arguments if there are whitelisted assets" do
-      NonDigestAssets.whitelist = %w(bar baz)
-      expect(NonDigestAssets.assets(%w(foo bar))).to eq ["bar"]
-    end
-  end
-end
-
-RSpec.describe "NonDigestAssets::CompileWithNonDigest", type: :aruba do
+RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
   let(:sprockets) do
     klass = Class.new do
       attr_reader :dir
@@ -48,7 +34,7 @@ RSpec.describe "NonDigestAssets::CompileWithNonDigest", type: :aruba do
         FileUtils.touch asset
       end
     end
-    klass.prepend NonDigestAssets::CompileWithNonDigest
+    klass.prepend described_class
     in_current_directory do
       klass.new
     end
