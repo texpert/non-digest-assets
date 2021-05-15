@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.license       = "MIT"
   s.require_path  = "lib"
 
-  s.required_ruby_version = ">= 2.4"
+  s.required_ruby_version = ">= 2.5"
 
   s.add_dependency "activesupport", ">= 5.2", "< 6.2"
   s.add_dependency "sprockets", [">= 2.0", "< 5.0"]
