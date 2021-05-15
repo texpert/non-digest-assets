@@ -4,6 +4,7 @@ require:
   - rubocop-packaging
   - rubocop-performance
   - rubocop-rake
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
