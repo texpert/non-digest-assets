@@ -50,6 +50,11 @@ Metrics/BlockLength:
     - 'spec/**/*' # RSpec describe blocks can be any size
     - '*.gemspec' # Gem spec blocks can be any size
 
+# Disabled until the relevant parts of the API have been updated
+# See https://github.com/mvz/non-digest-assets/issues/41
+Naming/InclusiveLanguage:
+  Enabled: false
+
 Performance/StartWith:
   AutoCorrect: true
 
