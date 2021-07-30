@@ -10,11 +10,11 @@ module NonDigestAssets
 
   class << self
     def filter_assets(asset_list)
-      if whitelist.empty?
+      if selected_assets.empty?
         asset_list
       else
         asset_list.select do |logical_path, _digest_path|
-          whitelist.any? do |item|
+          selected_assets.any? do |item|
             item === logical_path
           end
         end

@@ -19,25 +19,25 @@ RSpec.describe NonDigestAssets do
   end
 
   describe ".filter_assets" do
-    it "returns its arguments if there are no whitelisted assets" do
-      described_class.whitelist = []
+    it "returns its arguments if there are no selected assets" do
+      described_class.selected_assets = []
       expect(described_class.filter_assets(%w(foo bar))).to eq %w(foo bar)
     end
 
-    it "returns only whitelisted parts of arguments if there are whitelisted assets" do
-      described_class.whitelist = %w(bar baz)
+    it "returns only selected parts of arguments if there are selected assets" do
+      described_class.selected_assets = %w(bar baz)
       expect(described_class.filter_assets(%w(foo bar))).to eq ["bar"]
     end
   end
 
   describe ".assets (deprecated)" do
-    it "returns its arguments if there are no whitelisted assets" do
-      described_class.whitelist = []
+    it "returns its arguments if there are no selected assets" do
+      described_class.selected_assets = []
       expect(described_class.assets(%w(foo bar))).to eq %w(foo bar)
     end
 
-    it "returns only whitelisted parts of arguments if there are whitelisted assets" do
-      described_class.whitelist = %w(bar baz)
+    it "returns only selected parts of arguments if there are selected assets" do
+      described_class.selected_assets = %w(bar baz)
       expect(described_class.assets(%w(foo bar))).to eq ["bar"]
     end
   end
