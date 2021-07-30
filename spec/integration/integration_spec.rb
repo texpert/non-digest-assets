@@ -4,8 +4,6 @@ require "spec_helper"
 require "rails"
 require "sprockets"
 
-RAILS_5_0_SPROCKETS_3_DIGEST =
-  "af04b226fd7202dfc532ce7aedb95a0128277937e90d3b3a3d35e1cce9e16886"
 RAILS_5_1_SPROCKETS_3_DIGEST =
   "f0d704deea029cf000697e2c0181ec173a1b474645466ed843eb5ee7bb215794"
 RAILS_6_SPROCKETS_4_DIGEST =
@@ -17,10 +15,8 @@ RSpec.describe "compiling assets using non-digest-assets", type: :aruba do
     # 5 is tested in combination with Sprockets 3
     if Rails::VERSION::MAJOR >= 6
       RAILS_6_SPROCKETS_4_DIGEST
-    elsif Rails::VERSION::MINOR >= 1
-      RAILS_5_1_SPROCKETS_3_DIGEST
     else
-      RAILS_5_0_SPROCKETS_3_DIGEST
+      RAILS_5_1_SPROCKETS_3_DIGEST
     end
   end
 
