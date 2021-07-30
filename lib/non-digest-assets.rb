@@ -25,6 +25,9 @@ module NonDigestAssets
       filter_assets(asset_list)
     end
 
+    alias selected_assets whitelist
+    alias selected_assets= whitelist=
+
     ActiveSupport::Deprecation
       .deprecate_methods(self, assets: "use filter_assets instead",
                          deprecator: ActiveSupport::Deprecation.new("2.0.0",
