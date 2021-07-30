@@ -53,8 +53,8 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
                             expand_path("bar-f00df00d.css")]
     end
 
-    describe "if regular files for each asset exist but gzipped files do not" do
-      it "creates only non-digest versions for each asset" do
+    context "when regular files for each asset exist but gzipped files do not" do
+      it "creates only uncompressed non-digest versions for each asset" do
         sprockets.compile
         aggregate_failures do
           expect("foo.css").to be_an_existing_file
@@ -74,7 +74,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
       end
     end
 
-    describe "if no files exist for each asset" do
+    context "when no files exist for each asset" do
       before do
         sprockets.define_singleton_method :make_asset do |it|
           # Do nothing
@@ -92,7 +92,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
       end
     end
 
-    describe "if both regular and gzipped files exist for each asset" do
+    context "when both regular and gzipped files exist for each asset" do
       before do
         sprockets.define_singleton_method :make_asset do |it|
           FileUtils.touch it
