@@ -8,16 +8,20 @@ module NonDigestAssets
   @@whitelist = []
 
   class << self
-    def assets(assets)
+    def filter_assets(asset_list)
       if whitelist.empty?
-        assets
+        asset_list
       else
-        assets.select do |logical_path, _digest_path|
+        asset_list.select do |logical_path, _digest_path|
           whitelist.any? do |item|
             item === logical_path
           end
         end
       end
+    end
+
+    def assets(asset_list)
+      filter_assets(asset_list)
     end
   end
 
@@ -32,7 +36,7 @@ module NonDigestAssets
 
     def compile(*args)
       paths = super
-      NonDigestAssets.assets(assets).each do |(logical_path, digest_path)|
+      NonDigestAssets.filter_assets(assets).each do |(logical_path, digest_path)|
         full_digest_path = File.join dir, digest_path
         full_digest_gz_path = "#{full_digest_path}.gz"
         full_non_digest_path = File.join dir, logical_path
