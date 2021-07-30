@@ -72,7 +72,7 @@ The sprockets-rails developers do not want to support it.
 Which versions of Ruby and Rails are supported?
 --------------------------------------
 
-This gem is tested with Rails 5.0, 5.1, 5.2 and 6.0 and targets Ruby 2.4 and up.
+This gem is tested with Rails 5.2 and 6.0 and targets Ruby 2.5 and up.
 
 Who wrote this?
 ---------------
