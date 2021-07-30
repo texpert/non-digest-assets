@@ -9,17 +9,13 @@ module NonDigestAssets
 
   class << self
     def assets(assets)
-      return assets if whitelist.empty?
-
-      whitelisted_assets(assets)
-    end
-
-    private
-
-    def whitelisted_assets(assets)
-      assets.select do |logical_path, _digest_path|
-        whitelist.any? do |item|
-          item === logical_path
+      if whitelist.empty?
+        assets
+      else
+        assets.select do |logical_path, _digest_path|
+          whitelist.any? do |item|
+            item === logical_path
+          end
         end
       end
     end
