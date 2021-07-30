@@ -10,11 +10,11 @@ module NonDigestAssets
 
   class << self
     def filter_assets(asset_list)
-      if selected_assets.empty?
+      if asset_selectors.empty?
         asset_list
       else
         asset_list.select do |logical_path, _digest_path|
-          selected_assets.any? do |item|
+          asset_selectors.any? do |item|
             item === logical_path
           end
         end
@@ -25,14 +25,14 @@ module NonDigestAssets
       filter_assets(asset_list)
     end
 
-    alias selected_assets whitelist
-    alias selected_assets= whitelist=
+    alias asset_selectors whitelist
+    alias asset_selectors= whitelist=
 
     ActiveSupport::Deprecation
       .deprecate_methods(self,
                          assets: "use filter_assets instead",
-                         whitelist: "use selected_assets instead",
-                         "whitelist=": "use selected_assets= instead",
+                         whitelist: "use asset_selectors instead",
+                         "whitelist=": "use asset_selectors= instead",
                          deprecator: ActiveSupport::Deprecation.new("2.0.0",
                                                                     "non-digest-assets"))
   end

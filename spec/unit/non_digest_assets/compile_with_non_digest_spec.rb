@@ -41,7 +41,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
   end
 
   before do
-    NonDigestAssets.selected_assets = []
+    NonDigestAssets.asset_selectors = []
   end
 
   describe "#compile" do
@@ -63,7 +63,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
       end
 
       it "does not copy files for non-selected assets" do
-        NonDigestAssets.selected_assets = ["bar.css"]
+        NonDigestAssets.asset_selectors = ["bar.css"]
         sprockets.compile
         aggregate_failures do
           expect("foo.css").not_to be_an_existing_file
@@ -109,7 +109,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
       end
 
       it "does not copy files for non-selected assets" do
-        NonDigestAssets.selected_assets = ["bar.css"]
+        NonDigestAssets.asset_selectors = ["bar.css"]
         sprockets.compile
         aggregate_failures do
           expect("foo.css").not_to be_an_existing_file
