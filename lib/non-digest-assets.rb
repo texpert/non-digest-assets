@@ -2,6 +2,7 @@
 
 require "sprockets/manifest"
 require "active_support/core_ext/module/attribute_accessors"
+require "active_support/deprecation"
 
 module NonDigestAssets
   mattr_accessor :whitelist
@@ -23,6 +24,11 @@ module NonDigestAssets
     def assets(asset_list)
       filter_assets(asset_list)
     end
+
+    ActiveSupport::Deprecation
+      .deprecate_methods(self, assets: "use filter_assets instead",
+                         deprecator: ActiveSupport::Deprecation.new("2.0.0",
+                                                                    "non-digest-assets"))
   end
 
   module CompileWithNonDigest

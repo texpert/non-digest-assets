@@ -16,7 +16,7 @@ RSpec.describe NonDigestAssets do
     end
   end
 
-  describe ".assets" do
+  describe ".assets (deprecated)" do
     it "returns its arguments if there are no whitelisted assets" do
       described_class.whitelist = []
       expect(described_class.assets(%w(foo bar))).to eq %w(foo bar)
