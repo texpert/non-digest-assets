@@ -28,6 +28,11 @@ RSpec.describe NonDigestAssets do
       described_class.selected_assets = %w(bar baz)
       expect(described_class.filter_assets(%w(foo bar))).to eq ["bar"]
     end
+
+    it "allows filtering using a regex" do
+      described_class.selected_assets = [/ba/]
+      expect(described_class.filter_assets(%w(foo bar ababa))).to eq %w(bar ababa)
+    end
   end
 
   describe ".assets (deprecated)" do
