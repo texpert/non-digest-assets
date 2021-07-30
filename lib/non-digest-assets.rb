@@ -25,6 +25,8 @@ module NonDigestAssets
     # and is not owned by the calling user, the utime call will fail so we just
     # delete the target file first in any case.
     def copy_file(from, to)
+      return if from == to
+
       FileUtils.rm_f to
       FileUtils.copy_file from, to, :preserve_attributes
     end
