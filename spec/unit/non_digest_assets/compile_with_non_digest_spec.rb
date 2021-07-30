@@ -6,22 +6,24 @@ require "tmpdir"
 require "fileutils"
 
 RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
+  let(:assets) do
+    [["foo.css", "foo-deadbeef.css"],
+     ["bar.css", "bar-f00df00d.css"]]
+  end
+
   let(:sprockets) do
     klass = Class.new do
       attr_reader :dir
+      attr_reader :assets
 
-      def initialize
+      def initialize(asset_list)
         @dir = Dir.pwd
+        @assets = asset_list
       end
 
       def compile
-        files = ["#{dir}/foo-deadbeef.css", "#{dir}/bar-f00df00d.css"]
+        files = assets.map { |(_, path)| "#{dir}/#{path}" }
         files.each { |it| make_asset it }
-      end
-
-      def assets
-        [["foo.css", "foo-deadbeef.css"],
-         ["bar.css", "bar-f00df00d.css"]]
       end
 
       def logger
@@ -36,7 +38,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
     end
     klass.prepend described_class
     in_current_directory do
-      klass.new
+      klass.new assets
     end
   end
 
@@ -51,8 +53,8 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
                             expand_path("bar-f00df00d.css")]
     end
 
-    describe "if regular files for each asset exist but gzipped files do not" do
-      it "creates only non-digest versions for each asset" do
+    context "when regular files for each asset exist but gzipped files do not" do
+      it "creates only uncompressed non-digest versions for each asset" do
         sprockets.compile
         aggregate_failures do
           expect("foo.css").to be_an_existing_file
@@ -72,7 +74,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
       end
     end
 
-    describe "if no files exist for each asset" do
+    context "when no files exist for each asset" do
       before do
         sprockets.define_singleton_method :make_asset do |it|
           # Do nothing
@@ -90,7 +92,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
       end
     end
 
-    describe "if both regular and gzipped files exist for each asset" do
+    context "when both regular and gzipped files exist for each asset" do
       before do
         sprockets.define_singleton_method :make_asset do |it|
           FileUtils.touch it
@@ -117,6 +119,15 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
           expect("foo.css.gz").not_to be_an_existing_file
           expect("bar.css.gz").to be_an_existing_file
         end
+      end
+    end
+
+    context "when logical path and digest path are the same" do
+      let(:assets) { [%w(FOO FOO)] }
+
+      it "keeps the already created version" do
+        sprockets.compile
+        expect("FOO").to be_an_existing_file
       end
     end
   end
