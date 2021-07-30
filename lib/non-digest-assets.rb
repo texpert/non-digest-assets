@@ -2,27 +2,39 @@
 
 require "sprockets/manifest"
 require "active_support/core_ext/module/attribute_accessors"
+require "active_support/deprecation"
 
 module NonDigestAssets
   mattr_accessor :whitelist
   @@whitelist = []
 
   class << self
-    def assets(assets)
-      return assets if whitelist.empty?
-
-      whitelisted_assets(assets)
-    end
-
-    private
-
-    def whitelisted_assets(assets)
-      assets.select do |logical_path, _digest_path|
-        whitelist.any? do |item|
-          item === logical_path
+    def filter_assets(asset_list)
+      if asset_selectors.empty?
+        asset_list
+      else
+        asset_list.select do |logical_path, _digest_path|
+          asset_selectors.any? do |item|
+            item === logical_path
+          end
         end
       end
     end
+
+    def assets(asset_list)
+      filter_assets(asset_list)
+    end
+
+    alias asset_selectors whitelist
+    alias asset_selectors= whitelist=
+
+    ActiveSupport::Deprecation
+      .deprecate_methods(self,
+                         assets: "use filter_assets instead",
+                         whitelist: "use asset_selectors instead",
+                         "whitelist=": "use asset_selectors= instead",
+                         deprecator: ActiveSupport::Deprecation.new("2.0.0",
+                                                                    "non-digest-assets"))
   end
 
   module CompileWithNonDigest
@@ -36,7 +48,7 @@ module NonDigestAssets
 
     def compile(*args)
       paths = super
-      NonDigestAssets.assets(assets).each do |(logical_path, digest_path)|
+      NonDigestAssets.filter_assets(assets).each do |(logical_path, digest_path)|
         full_digest_path = File.join dir, digest_path
         full_digest_gz_path = "#{full_digest_path}.gz"
         full_non_digest_path = File.join dir, logical_path

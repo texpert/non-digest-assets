@@ -18,13 +18,13 @@ Just put it in your Gemfile
 gem "non-digest-assets"
 ```
 
-If you want to whitelist non-digest assets for only certain files, you can
-configure a whitelist like this:
+If you want to generate non-digest assets for only certain files, you can
+configure a list of asset selectors like this:
 
 ```ruby
 # config/initializers/non_digest_assets.rb
 
-NonDigestAssets.whitelist += [/tinymce\/.*/, "image.png"]
+NonDigestAssets.asset_selectors += [/tinymce\/.*/, "image.png"]
 ```
 
 Be sure to give either a regex that will match the right assets or the logical
