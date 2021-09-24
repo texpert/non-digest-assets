@@ -35,16 +35,16 @@ module NonDigestAssets
       filter_assets(asset_list)
     end
 
-    alias asset_selectors whitelist
-    alias asset_selectors= whitelist=
+    alias_method :asset_selectors, :whitelist
+    alias_method :asset_selectors=, :whitelist=
 
-    ActiveSupport::Deprecation
-      .deprecate_methods(self,
-                         assets: "use filter_assets instead",
-                         whitelist: "use asset_selectors instead",
-                         "whitelist=": "use asset_selectors= instead",
-                         deprecator: ActiveSupport::Deprecation.new("2.0.0",
-                                                                    "non-digest-assets"))
+    ActiveSupport::Deprecation.deprecate_methods(
+      self,
+      assets: "use filter_assets instead",
+      whitelist: "use asset_selectors instead",
+      "whitelist=": "use asset_selectors= instead",
+      deprecator: ActiveSupport::Deprecation.new("2.0.0", "non-digest-assets")
+    )
   end
 
   module CompileWithNonDigest

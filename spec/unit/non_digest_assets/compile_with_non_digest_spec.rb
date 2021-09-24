@@ -7,8 +7,10 @@ require "fileutils"
 
 RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
   let(:assets) do
-    [["foo.css", "foo-deadbeef.css"],
-     ["bar.css", "bar-f00df00d.css"]]
+    [
+      ["foo.css", "foo-deadbeef.css"],
+      ["bar.css", "bar-f00df00d.css"]
+    ]
   end
 
   let(:sprockets) do
@@ -49,8 +51,10 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
   describe "#compile" do
     it "returns the result of the super method" do
       result = sprockets.compile
-      expect(result).to eq [expand_path("foo-deadbeef.css"),
-                            expand_path("bar-f00df00d.css")]
+      expect(result).to eq [
+        expand_path("foo-deadbeef.css"),
+        expand_path("bar-f00df00d.css")
+      ]
     end
 
     context "when regular files for each asset exist but gzipped files do not" do
@@ -123,7 +127,7 @@ RSpec.describe NonDigestAssets::CompileWithNonDigest, type: :aruba do
     end
 
     context "when logical path and digest path are the same" do
-      let(:assets) { [%w(FOO FOO)] }
+      let(:assets) { [%w[FOO FOO]] }
 
       it "keeps the already created version" do
         sprockets.compile
