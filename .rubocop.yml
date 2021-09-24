@@ -11,17 +11,24 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 2.5
 
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/ArrayAlignment:
+  EnforcedStyle: with_fixed_indentation
+
 # Make BeginEndAlignment behavior match EndAlignment
 Layout/BeginEndAlignment:
   EnforcedStyleAlignWith: begin
 
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+  AllowBeforeTrailingComments: false
+  ForceEqualSignAlignment: false
+
 # Be lenient with line length
 Layout/LineLength:
   Max: 92
-
-# Don't force lonely closing parentheses
-Layout/MultilineMethodCallBraceLayout:
-  EnforcedStyle: same_line
 
 # Multi-line method calls should be simply indented. Aligning them makes it
 # even harder to keep a sane line length.
@@ -39,6 +46,10 @@ Layout/SpaceBeforeBlockBraces:
 
 # Assume the programmer knows how bracketed block syntax works
 Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+# Assume the programmer knows precendence rules
+Lint/AmbiguousOperatorPrecedence:
   Enabled: false
 
 # Allow if (foo = get_foo) style
@@ -69,9 +80,8 @@ RSpec/MultipleExpectations:
   Exclude:
     - 'spec/integration/**/*'
 
-# Allow and/or for control flow only
-Style/AndOr:
-  EnforcedStyle: conditionals
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
 
 # Require at least two dependent lines before suggesting a guard clause
 Style/GuardClause:
@@ -84,12 +94,6 @@ Style/Next:
 # Allow both real comparison and predicate methods
 Style/NumericPredicate:
   Enabled: false
-
-# Use older RuboCop default
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%W': ()
-    '%w': ()
 
 # Allow explicit return with multiple return values
 Style/RedundantReturn:
