@@ -12,11 +12,12 @@ on:
 
 jobs:
   test:
+
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        ruby: [2.6, 2.7]
         appraisal: [rails_5_2, rails_6_0, rails_6_1]
         include:
           - ruby: "3.0"
@@ -50,6 +51,7 @@ jobs:
         run: bundle exec rake
 
   rubocop:
+
     runs-on: ubuntu-latest
 
     steps:
