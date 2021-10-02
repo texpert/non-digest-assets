@@ -2,11 +2,10 @@
 
 require "sprockets/manifest"
 require "active_support/core_ext/module/attribute_accessors"
-require "active_support/deprecation"
 
 module NonDigestAssets
-  mattr_accessor :whitelist
-  @@whitelist = []
+  mattr_accessor :asset_selectors
+  @@asset_selectors = []
 
   class << self
     def filter_assets(asset_list)
@@ -30,21 +29,6 @@ module NonDigestAssets
       FileUtils.rm_f to
       FileUtils.copy_file from, to, :preserve_attributes
     end
-
-    def assets(asset_list)
-      filter_assets(asset_list)
-    end
-
-    alias_method :asset_selectors, :whitelist
-    alias_method :asset_selectors=, :whitelist=
-
-    ActiveSupport::Deprecation.deprecate_methods(
-      self,
-      assets: "use filter_assets instead",
-      whitelist: "use asset_selectors instead",
-      "whitelist=": "use asset_selectors= instead",
-      deprecator: ActiveSupport::Deprecation.new("2.0.0", "non-digest-assets")
-    )
   end
 
   module CompileWithNonDigest

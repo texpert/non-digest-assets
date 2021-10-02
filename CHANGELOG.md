@@ -2,6 +2,10 @@
 
 Notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Remove deprecated methods `whitelist`, `whitelist=`, and `assets`
+
 ## [1.2.0](https://github.com/mvz/non-digest-assets/tree/v1.2.0)
 
 ### Summary
