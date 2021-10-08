@@ -2,11 +2,14 @@
 
 Notable changes to this project will be documented in this file.
 
-## Unreleased
+## [2.0.0](https://github.com/mvz/non-digest-assets/tree/v2.0.0) (2021-10-08)
 
-- Remove deprecated methods `whitelist`, `whitelist=`, and `assets`
+- Remove deprecated methods `whitelist`, `whitelist=`, and `assets` [\#54](https://github.com/mvz/non-digest-assets/pull/54) ([mvz](https://github.com/mvz))
+- Drop support for Ruby 2.5 [\#52](https://github.com/mvz/non-digest-assets/pull/52) ([mvz](https://github.com/mvz))
 
-## [1.2.0](https://github.com/mvz/non-digest-assets/tree/v1.2.0)
+[Full Changelog](https://github.com/mvz/non-digest-assets/compare/v1.2.0...v2.0.0)
+
+## [1.2.0](https://github.com/mvz/non-digest-assets/tree/v1.2.0) (2021-07-30)
 
 ### Summary
 
