@@ -20,10 +20,14 @@ jobs:
         ruby: [2.6, 2.7]
         appraisal: [rails_5_2, rails_6_0, rails_6_1]
         include:
+          - ruby: 2.7
+            appraisal: rails_7_0
           - ruby: "3.0"
             appraisal: rails_6_0
           - ruby: "3.0"
             appraisal: rails_6_1
+          - ruby: "3.0"
+            appraisal: rails_7_0
 
     env:
       BUNDLE_GEMFILE: gemfiles/${{ matrix.appraisal }}.gemfile
