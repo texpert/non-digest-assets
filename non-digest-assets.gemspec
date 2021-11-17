@@ -20,6 +20,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.6"
 
+  spec.metadata["rubygems_mfa_required"] = "true"
+
   spec.add_dependency "activesupport", ">= 5.2"
   spec.add_dependency "sprockets", [">= 2.0", "< 5.0"]
 
@@ -29,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rails", ">= 5.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.10"
-  spec.add_development_dependency "rubocop", "~> 1.22.0"
+  spec.add_development_dependency "rubocop", "~> 1.23.0"
   spec.add_development_dependency "rubocop-packaging", "~> 0.5.1"
   spec.add_development_dependency "rubocop-performance", "~> 1.12.0"
   spec.add_development_dependency "rubocop-rails", "~> 2.12.0"
