@@ -20,6 +20,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.6"
 
+  spec.metadata["rubygems_mfa_required"] = "true"
+
   spec.add_dependency "activesupport", ">= 5.2"
   spec.add_dependency "sprockets", [">= 2.0", "< 5.0"]
 
