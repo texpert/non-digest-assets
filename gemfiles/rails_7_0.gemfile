@@ -6,5 +6,6 @@ source "https://rubygems.org"
 
 gem "rails", "~> 7.0.0"
 gem "sprockets", "~> 4.0"
+gem "sprockets-rails", "~> 3.0"
 
 gemspec path: "../"
