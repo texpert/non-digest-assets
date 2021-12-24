@@ -2,6 +2,17 @@
 
 Notable changes to this project will be documented in this file.
 
+## [2.1.0](https://github.com/mvz/non-digest-assets/tree/v2.1.0)
+
+This release adds support for Rails 7.0.
+
+### Merged pull requests
+
+- Finalize Rails 7 support [\#61](https://github.com/mvz/non-digest-assets/pull/61) ([mvz](https://github.com/mvz))
+- Support Rails 7.0 [\#57](https://github.com/mvz/non-digest-assets/pull/57) ([brian-kephart](https://github.com/brian-kephart))
+
+[Full Changelog](https://github.com/mvz/non-digest-assets/compare/v2.0.0...v2.1.0)
+
 ## [2.0.0](https://github.com/mvz/non-digest-assets/tree/v2.0.0) (2021-10-08)
 
 - Remove deprecated methods `whitelist`, `whitelist=`, and `assets` [\#54](https://github.com/mvz/non-digest-assets/pull/54) ([mvz](https://github.com/mvz))
