@@ -31,11 +31,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rails", [">= 5.2", "< 7.1"]
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.10"
-  spec.add_development_dependency "rubocop", "~> 1.25.0"
+  spec.add_development_dependency "rubocop", "~> 1.25"
   spec.add_development_dependency "rubocop-packaging", "~> 0.5.1"
-  spec.add_development_dependency "rubocop-performance", "~> 1.13.0"
-  spec.add_development_dependency "rubocop-rails", "~> 2.13.0"
+  spec.add_development_dependency "rubocop-performance", "~> 1.13"
+  spec.add_development_dependency "rubocop-rails", "~> 2.13"
   spec.add_development_dependency "rubocop-rake", "~> 0.6.0"
-  spec.add_development_dependency "rubocop-rspec", "~> 2.9.0"
+  spec.add_development_dependency "rubocop-rspec", "~> 2.9"
   spec.add_development_dependency "sprockets-rails", "~> 3.0"
 end
