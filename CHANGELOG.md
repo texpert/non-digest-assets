@@ -2,6 +2,19 @@
 
 Notable changes to this project will be documented in this file.
 
+## [2.2.0](https://github.com/mvz/non-digest-assets/tree/v2.2.0)
+
+This release adds support for Ruby 3.1.
+
+### Merged pull requests
+
+- Loosen development dependency version constraints [\#73](https://github.com/mvz/non-digest-assets/pull/73) ([mvz](https://github.com/mvz))
+- Inherit default RuboCop exclusions [\#68](https://github.com/mvz/non-digest-assets/pull/68) ([mvz](https://github.com/mvz))
+- Test with Ruby 3.1 in CI [\#64](https://github.com/mvz/non-digest-assets/pull/64) ([mvz](https://github.com/mvz))
+- Improve development experience [\#63](https://github.com/mvz/non-digest-assets/pull/63) ([mvz](https://github.com/mvz))
+
+[Full Changelog](https://github.com/mvz/non-digest-assets/compare/v2.1.0...v2.2.0)
+
 ## [2.1.0](https://github.com/mvz/non-digest-assets/tree/v2.1.0)
 
 This release adds support for Rails 7.0.
