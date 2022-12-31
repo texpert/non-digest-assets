@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
 
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.add_dependency "activesupport", [">= 5.2", "< 7.1"]
-  spec.add_dependency "sprockets", [">= 2.0", "< 5.0"]
+  spec.add_dependency "activesupport", [">= 6.0", "< 7.1"]
+  spec.add_dependency "sprockets", "~> 4.0"
 
   spec.add_development_dependency "appraisal", "~> 2.3"
   spec.add_development_dependency "aruba", "~> 2.0"

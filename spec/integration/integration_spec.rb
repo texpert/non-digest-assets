@@ -4,8 +4,6 @@ require "spec_helper"
 require "rails"
 require "sprockets"
 
-RAILS_5_1_SPROCKETS_3_DIGEST =
-  "f0d704deea029cf000697e2c0181ec173a1b474645466ed843eb5ee7bb215794"
 RAILS_6_SPROCKETS_4_DIGEST =
   "b324c44f04a0d0da658824105489a2676d49df561c3d06723770321fd441977c"
 RAILS_7_SPROCKETS_4_DIGEST =
@@ -13,11 +11,7 @@ RAILS_7_SPROCKETS_4_DIGEST =
 
 RSpec.describe "compiling assets using non-digest-assets", type: :aruba do
   let(:digest_key) do
-    # This assumes Rails 6+ is tested in combination with Sprockets 4, and Rails
-    # 5 is tested in combination with Sprockets 3
     case Rails::VERSION::MAJOR
-    when 5
-      RAILS_5_1_SPROCKETS_3_DIGEST
     when 6
       RAILS_6_SPROCKETS_4_DIGEST
     else
@@ -29,10 +23,8 @@ RSpec.describe "compiling assets using non-digest-assets", type: :aruba do
     flags =
       "--skip-bundle --skip-test-unit --skip-spring --skip-bootsnap --skip-listen" \
       " --skip-javascript"
-    if Rails::VERSION::MAJOR >= 6
-      flags += " --skip-webpack-install"
-      flags += " --no-skip-javascript" if Rails.version.to_f >= 6.1
-    end
+    flags += " --skip-webpack-install"
+    flags += " --no-skip-javascript" if Rails.version.to_f >= 6.1
     flags
   end
 
