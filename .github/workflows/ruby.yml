@@ -31,7 +31,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           # NOTE: Bundler expands the path relative to the gemfile, not the
           # current directory.
