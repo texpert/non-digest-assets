@@ -21,3 +21,9 @@ appraise "rails_7_1" do
   gem "sprockets", "~> 4.0"
   gem "sprockets-rails", "~> 3.0"
 end
+
+appraise "rails_7_2" do
+  gem "rails", git: "https://github.com/rails/rails", branch: "7-2-stable"
+  gem "sprockets", "~> 4.0"
+  gem "sprockets-rails", "~> 3.0"
+end
